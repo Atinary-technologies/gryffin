@@ -11,9 +11,9 @@ Gryffin is an open source algorithm which implements Bayesian optimization for c
 
 Gryffin can be installed from source. 
 ```
-git clone https://github.com/aspuru-guzik-group/gryffin.git
+git clone https://github.com/Atinary-technologies/gryffin
 cd gryffin 
-python setup.py install
+pip install .
 ```
 
 ### Reference 
