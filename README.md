@@ -22,12 +22,12 @@ pip install .
 
 Gryffin identifies optimal parameter choices in a closed-loop approach. Given a set of prior observations, consisting of evaluated parameters and associated measurements, it can recommend several parameter choices for future evaluation.
 
-A basic skeleton of the code to run Gryffin is as follows:
+A basic skeleton of the code to run Gryffin in a single-objective optimization problem is as follows:
 ```
 from gryffin import Gryffin
 
 ##  BUDGET (int): number of evaluations of the black-box function we want to optimize.
-##  benchmark (function): 'black box' function that returns the merit obtained for a certain parameter setup.
+##  benchmark (function): 'black box' function that returns the merit (scalar) obtained for a certain parameter setup.
 
 # create an instance from a configuration file
 CONFIG_FILE = 'config.json'
@@ -40,7 +40,7 @@ for _ in range(BUDGET):
     samples  = gryffin.recommend(observations = observations)
    
     for sample in samples:
-        # black box models is queried with the recommended parameter setups 
+        # black-box function is queried with the recommended parameter setups 
         measurement   = benchmark(sample)
         sample['obj'] = measurement
         observations.append(sample)
@@ -52,13 +52,13 @@ The config file (`config.json`) defines the optimization problem and the setup o
 
 - `general`. It contains hyperparameter choices that will affect the performance of Gryffin. The whole list of hyperparameters and their default values are available at `src/gryffin/utilities/defaults.py`. Some of the most important hyperparameters (type) are:
     - `auto_desc_gen` (bool): It enables dynamic Gryffin for the case it is set to `True` and descriptors are provided.
-    - `sampling_strategies` (int): Number of acquisition functions as per the Phoenics framework. 
+    - `sampling_strategies` (int): Number of acquisition functions as per the Phoenics framework. By default, *n* sampling strategies are sampled evenly across the interval [-1, 1], i.e. `lambdas = np.linspace(-1, 1, n)`.
 
-- `parameters`. It characterizes the parameters that are to be optimized. Gryffin supports both continuous, categorical and discrete parameters. Each parameter type is characterized with a number of attributes.
+- `parameters`. It characterizes the parameters that are to be optimized. Gryffin supports continuous, categorical and discrete parameters. Each parameter type is characterized with a number of attributes.
 
     - **Continuous** parameters are characterized by an upper (`high`) and lower (`low`) bound.
-    - **Categorical** parameters take on one of a limited number of possible options. Options may be characterized by descriptors. Both information should be available in `cat_details`.
-    - **Discrete** parameters also take on one of a limited number of possible options. Options are in the interval defined by an upper (`high`) and lower (`low`) bound.
+    - **Categorical** parameters take on one of a finite number of possible options. Options may be characterized by descriptors. Both information (`options` and `descriptors`) should be available in `cat_details`.
+    - **Discrete** parameters also take on one of a finite number of possible options. Options are in the interval defined by an upper (`high`) and lower (`low`) bound.
 
 - `objectives`. It enumerates the list of objectives to optimize. For the case where the user defines more than one objective, all objectives are aggregated into one single objective based on the Chimera framework [3]. In either case, each objective must always be characterized with:
     - `name` (str): Name of the property to be optimized.
