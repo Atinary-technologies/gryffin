@@ -5,7 +5,7 @@ Gryffin is an open source algorithm which implements Bayesian optimization for c
 
 ## Getting started
 
-Gryffin is developed for Linux based systems. Although we hope that you will not encounter any issues we would appreciate if you contacted us should you run into any of them.
+Gryffin is developed for Linux based systems. Please contact us should you run into issues. 
 
 To install Gryffin from source you can clone this repository and execute the following steps.
 
