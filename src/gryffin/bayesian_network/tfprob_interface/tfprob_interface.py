@@ -220,8 +220,7 @@ class TfprobNetwork(object):
 
                     target = tf.cast(self.y[:, kernel_begin : kernel_end], tf.int32)
 
-                    prior_temperature = 0.5 + 10.0 / self.num_obs
-#                                       prior_temperature = 0.4
+                    prior_temperature = 1.0
                     post_temperature  = prior_temperature
 
                     prior_support = prior_relevant
