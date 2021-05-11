@@ -6,7 +6,7 @@ __author__ = 'Florian Hase'
 
 import sys
 
-from utilities import GryffinModuleError
+from gryffin.utilities.exceptions import GryffinModuleError
 
 #=======================================================================
 
