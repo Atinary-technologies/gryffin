@@ -50,7 +50,7 @@ setup(name='gryffin',
         include_dirs=np.get_include(),
         install_requires = [
             "Cython==0.29.22",
-            "edward2 @ git+https://github.com/google/edward2.git@a06c3abd8ec9aa4928aad6ae336e7c0324edcbc7",
+            "edward2==0.0.2",
             "matplotlib==3.4.1",
             "numpy==1.19.5",
             "pandas==1.2.3",
