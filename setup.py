@@ -30,7 +30,7 @@ import numpy as np
 #===============================================================================
 
 setup(name='gryffin',
-        version='0.1.1',
+        version='0.1.2',
         # cmdclass=versioneer.get_cmdclass(),
         description='Bayesian optimization for categorical variables',
         long_description=readme(),
@@ -55,7 +55,7 @@ setup(name='gryffin',
             "numpy==1.19.5",
             "pandas==1.2.3",
             "seaborn==0.11.1",
-            "SQLAlchemy==1.3.23",
+            "SQLAlchemy",
             "tensorflow==2.4.0",
             "tensorflow-probability==0.11.0"
         ],
